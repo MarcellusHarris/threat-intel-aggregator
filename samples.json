@@ -1,0 +1,20 @@
+[
+  {
+    "source": "VirusTotal",
+    "indicator": "8.8.8.8",
+    "risk_score": 85,
+    "details": {
+      "detections": 12,
+      "last_seen": "2025-08-10"
+    }
+  },
+  {
+    "source": "AbuseIPDB",
+    "indicator": "example.com",
+    "risk_score": 40,
+    "details": {
+      "reports": 5,
+      "confidence": 70
+    }
+  }
+]
