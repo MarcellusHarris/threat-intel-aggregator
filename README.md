@@ -12,6 +12,21 @@ This project provides an **n8n workflow** that aggregates threat intelligence fr
 - Google Sheets (or PostgreSQL) logging for all aggregated results
 - Modular design with environment variables for API keys and credentials
 
+## Workflow Diagram
+
+```mermaid
+graph TD
+    Cron["Cron Node (Hourly)"] --> AbuseIPDB["HTTP: AbuseIPDB Feed"]
+    Cron --> VirusTotal["HTTP: VirusTotal Feed"]
+    Cron --> OTX["HTTP: AlienVault OTX Feed"]
+    AbuseIPDB --> Merge
+    VirusTotal --> Merge
+    OTX --> Merge
+    Merge("Merge & Deduplicate") --> Score["Score & Filter"]
+    Score -->|"High Risk"| Slack["Slack Alert"]
+    Score -->|"All Results"| Sheets["Google Sheets Log"]
+```
+
 ## Getting Started
 
 1. Set up environment variables defined in `.env.sample` with your own API keys and credentials.
